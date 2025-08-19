@@ -1,46 +1,36 @@
-# Pilgrim Stamp Location Scraper
+# Pilgrim Stamp Scraper
 
-A Python web scraper designed to extract pilgrim stamp locations from the Camino Navarro route website and organize them into a structured dataset for geocoding analysis.
+A Python web scraper for extracting pilgrim stamp locations from the Camino Navarro website.
 
 ## Project Overview
 
-This project scrapes the website [Los Sellos del Camino](https://www.lossellosdelcamino.com/index.php/ruta-desde-roncesvalles/menu-camino-navarro) to collect information about pilgrim stamp locations along the Camino Navarro route. The scraper navigates through a three-level hierarchy:
-
-1. **Main Page** → Lists all towns along the route
-2. **Town Pages** → Lists all stamp locations within each town
-3. **Stamp Location Pages** → Contains place names and stamp images
+This project scrapes the website https://www.lossellosdelcamino.com to extract information about pilgrim stamp locations along the Camino Navarro route. It systematically navigates through town pages and stamp location pages to collect data and download stamp images.
 
 ## Features
 
-- Systematic extraction of all town names and stamp locations
-- Automatic download of stamp images with organized local storage
-- Data compilation into structured format with columns: `route`, `town`, `place`, `image_path`
-- Excel export for further analysis and geocoding
-- Rate limiting and error handling for robust scraping
-- Progress tracking and logging
+- Scrapes main page for town category links
+- Extracts stamp location links from each town
+- Downloads stamp images locally
+- Organizes data into structured format
+- Exports results to Excel file
 
 ## Project Structure
 
 ```
 stamp_location_scaper/
-├── requirements.txt          # Python dependencies
-├── main.py                  # Main execution script
-├── scraper.py               # Core scraping logic
-├── utils.py                 # Utility functions
-├── data/                    # Output data directory
-├── images/                  # Downloaded stamp images
-│   └── stamp_images/        # Organized by town/location
-└── README.md                # This file
+├── requirements.txt      # Python dependencies
+├── main.py              # Main execution script
+├── scraper.py           # Core scraping logic
+├── utils.py             # Utility functions
+├── data/                # Output data directory
+├── images/              # Downloaded images directory
+│   └── stamp_images/    # Stamp images organized by location
+└── README.md            # This file
 ```
 
 ## Installation
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd stamp_location_scaper
-   ```
-
+1. Clone the repository
 2. Install dependencies:
    ```bash
    pip install -r requirements.txt
@@ -48,40 +38,26 @@ stamp_location_scaper/
 
 ## Usage
 
-Run the main scraper:
+Run the main script:
 ```bash
 python main.py
 ```
 
-The scraper will:
-- Extract all town and stamp location data
-- Download stamp images to the `images/stamp_images/` directory
-- Generate an Excel file in the `data/` directory with columns:
-  - `route`: Route name (Camino Navarro)
-  - `town`: Town name
-  - `place`: Specific stamp location name
-  - `image_path`: Local path to downloaded image
-
 ## Output
 
-- **Excel File**: `data/pilgrim_stamps.xlsx` containing all scraped data
-- **Images**: Downloaded stamp images organized in local directory structure
-- **Logs**: Progress tracking and error reporting during execution
+The scraper produces:
+- Excel file with columns: route, town, place, image_path
+- Local directory structure with downloaded stamp images
+- Structured data ready for geocoding analysis
 
-## Data Structure
+## Dependencies
 
-The final dataset will contain entries like:
-- Route: Camino Navarro
-- Town: Roncesvalles / Orreaga
-- Place: Apartamentos Casa de los Beneficiados
-- Image Path: images/stamp_images/roncesvalles12_23a33a5cf90998a466ef4977db95e958.jpg
+- requests: HTTP requests
+- beautifulsoup4: HTML parsing
+- pandas: Data manipulation
+- openpyxl: Excel file export
+- lxml: XML/HTML parser
 
-## Requirements
+## Status
 
-- Python 3.8+
-- Internet connection for web scraping
-- Sufficient disk space for image downloads
-
-## License
-
-This project is for educational and research purposes. Please respect the website's terms of service and implement appropriate rate limiting when scraping.
+This project is currently under development with planned subtasks for implementation.

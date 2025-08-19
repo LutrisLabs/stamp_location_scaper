@@ -26,6 +26,7 @@ venv/
 env/
 ENV/
 .venv/
+.env/
 
 # IDE
 .vscode/
@@ -43,15 +44,29 @@ ENV/
 ehthumbs.db
 Thumbs.db
 
-# Project specific
-data/*.xlsx
-images/stamp_images/*
-!images/stamp_images/.gitkeep
-
 # Logs
 *.log
-logs/
+scraping.log
+test_scraping.log
+
+# Generated data files
+data/*.csv
+data/*.xlsx
+data/test_*.csv
+data/test_*.xlsx
+
+# Downloaded images
+images/stamp_images/*.jpg
+images/stamp_images/*.png
+images/stamp_images/*.gif
 
 # Temporary files
 *.tmp
 *.temp
+*.bak
+*.backup
+
+# Environment variables
+.env
+.env.local
+.env.*.local
