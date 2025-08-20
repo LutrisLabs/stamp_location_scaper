@@ -120,6 +120,10 @@ def main():
                         logging.error(f"    ✗ Error processing stamp location {stamp_url}: {e}")
                         failed_count += 1
                         continue
+                
+                # Add 5-second delay after completing each town
+                logging.info(f"Completed town: {town_name}. Waiting 5 seconds before next town...")
+                time.sleep(5)
             
             logging.info(f"✓ Successfully processed {processed_count} stamp locations for {scraper.route_name}")
             if failed_count > 0:

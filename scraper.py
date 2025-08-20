@@ -11,6 +11,27 @@ import time
 import logging
 from typing import List, Dict, Optional
 
+def retry_on_any_error(max_retries=3, delay=60):
+    """
+    Decorator to retry functions on any error with 1-minute delays.
+    """
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            for attempt in range(max_retries):
+                try:
+                    return func(*args, **kwargs)
+                except Exception as e:
+                    if attempt < max_retries - 1:
+                        logging.warning(f"Error occurred (attempt {attempt + 1}/{max_retries}): {e}. Waiting {delay} seconds...")
+                        time.sleep(delay)
+                        continue
+                    else:
+                        logging.error(f"Max retries reached. Final error: {e}")
+                        raise
+            return func(*args, **kwargs)
+        return wrapper
+    return decorator
+
 class PilgrimStampScraper:
     """Main scraper class for pilgrim stamp locations."""
     
@@ -38,6 +59,15 @@ class PilgrimStampScraper:
         self.session.headers.update({
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
         })
+    
+    @retry_on_any_error(max_retries=3, delay=60)
+    def _make_request(self, url: str, **kwargs):
+        """
+        Make HTTP request with retry logic for any errors.
+        """
+        response = self.session.get(url, **kwargs)
+        response.raise_for_status()
+        return response
         
     def get_town_links(self) -> List[str]:
         """
@@ -46,52 +76,30 @@ class PilgrimStampScraper:
         Returns:
             List of town URLs
         """
-        max_retries = 3
-        retry_delay = 2
-        
-        for attempt in range(max_retries):
-            try:
-                logging.info(f"Fetching main page for {self.route_name} (attempt {attempt + 1}/{max_retries}): {self.main_url}")
-                response = self.session.get(self.main_url, timeout=30)
-                response.raise_for_status()
-                
-                soup = BeautifulSoup(response.text, 'html.parser')
-                
-                # Find all links that contain the route-specific pattern
-                route_pattern = f"menu-camino-{self.route}/category/"
-                town_links = set()  # Use set to automatically remove duplicates
-                for a_tag in soup.find_all('a', href=True):
-                    href = a_tag['href']
-                    if route_pattern in href:
-                        full_url = urljoin(self.base_url, href)
-                        town_links.add(full_url)  # Add to set (duplicates automatically ignored)
-                        logging.info(f"Found town link: {full_url}")
-                
-                # Convert set back to list for return
-                unique_town_links = list(town_links)
-                logging.info(f"✓ Total unique town links found for {self.route_name}: {len(unique_town_links)}")
-                return unique_town_links
-                
-            except requests.RequestException as e:
-                logging.error(f"Error fetching main page (attempt {attempt + 1}/{max_retries}): {e}")
-                if attempt < max_retries - 1:
-                    logging.info(f"Retrying in {retry_delay} seconds...")
-                    time.sleep(retry_delay)
-                    retry_delay *= 2  # Exponential backoff
-                else:
-                    logging.error("Max retries reached. Failed to fetch main page.")
-                    return []
-            except Exception as e:
-                logging.error(f"Unexpected error in get_town_links (attempt {attempt + 1}/{max_retries}): {e}")
-                if attempt < max_retries - 1:
-                    logging.info(f"Retrying in {retry_delay} seconds...")
-                    time.sleep(retry_delay)
-                    retry_delay *= 2
-                else:
-                    logging.error("Max retries reached. Failed to fetch main page.")
-                    return []
-        
-        return []
+        try:
+            logging.info(f"Fetching main page for {self.route_name}: {self.main_url}")
+            response = self._make_request(self.main_url, timeout=30)
+            
+            soup = BeautifulSoup(response.text, 'html.parser')
+            
+            # Find all links that contain the route-specific pattern
+            route_pattern = f"menu-camino-{self.route}/category/"
+            town_links = set()  # Use set to automatically remove duplicates
+            for a_tag in soup.find_all('a', href=True):
+                href = a_tag['href']
+                if route_pattern in href:
+                    full_url = urljoin(self.base_url, href)
+                    town_links.add(full_url)  # Add to set (duplicates automatically ignored)
+                    logging.info(f"Found town link: {full_url}")
+            
+            # Convert set back to list for return
+            unique_town_links = list(town_links)
+            logging.info(f"✓ Total unique town links found for {self.route_name}: {len(unique_town_links)}")
+            return unique_town_links
+            
+        except Exception as e:
+            logging.error(f"Error in get_town_links: {e}")
+            return []
     
     def get_stamp_locations_by_town(self, town_urls: List[str]) -> Dict[str, List[str]]:
         """
@@ -113,7 +121,7 @@ class PilgrimStampScraper:
                 if i > 1:  # Don't delay for the first request
                     time.sleep(1)
                 
-                response = self.session.get(town_url)
+                response = self._make_request(town_url)
                 response.raise_for_status()
                 
                 soup = BeautifulSoup(response.text, 'html.parser')
@@ -143,6 +151,7 @@ class PilgrimStampScraper:
                 from utils import extract_town_name_from_url
                 town_name = extract_town_name_from_url(town_url)
                 town_stamp_locations[town_name] = []
+                
             except Exception as e:
                 logging.error(f"Unexpected error processing town {town_url}: {e}")
                 # Add empty list for failed towns to maintain structure
@@ -155,6 +164,7 @@ class PilgrimStampScraper:
         
         return town_stamp_locations
     
+    @retry_on_any_error(max_retries=3, delay=60)
     def scrape_stamp_location(self, stamp_url: str) -> Optional[Dict]:
         """
         Scrape individual stamp location page for place name, image, and categories.
@@ -168,7 +178,7 @@ class PilgrimStampScraper:
         try:
             logging.info(f"Scraping stamp location: {stamp_url}")
             
-            response = self.session.get(stamp_url)
+            response = self._make_request(stamp_url)
             response.raise_for_status()
             
             soup = BeautifulSoup(response.text, 'html.parser')
@@ -222,8 +232,13 @@ class PilgrimStampScraper:
             
             # Extract categories from the categories div
             categories = []
-            categories_div = soup.find('div', class_='element element-itemcategory first')
+            # Use a more flexible selector to catch variations like 'element element-itemcategory first last'
+            categories_div = soup.find('div', class_=lambda x: x and 'element-itemcategory' in x)
             if categories_div:
+                # Log the actual class attributes found for debugging
+                class_attrs = categories_div.get('class', [])
+                logging.debug(f"Found categories div with classes: {class_attrs}")
+                
                 # Find all links within the categories div
                 category_links = categories_div.find_all('a', href=True)
                 for link in category_links:
@@ -231,10 +246,13 @@ class PilgrimStampScraper:
                     if category_text:
                         categories.append(category_text)
                 
-                logging.info(f"Found {len(categories)} categories: {', '.join(categories)}")
+                if categories:
+                    logging.info(f"Found {len(categories)} categories: {', '.join(categories)}")
+                else:
+                    logging.warning(f"⚠️  Categories div found but no category text extracted for: {place_name}")
             else:
-                logging.info("No categories div found")
-            
+                logging.warning(f"⚠️  NO CATEGORIES FOUND for: {place_name} - missing categories div")
+
             result = {
                 'place_name': place_name,
                 'image_url': image_url,
@@ -245,6 +263,8 @@ class PilgrimStampScraper:
             logging.info(f"Successfully extracted: {place_name} with image: {image_url}")
             if categories:
                 logging.info(f"Categories: {', '.join(categories)}")
+            else:
+                logging.warning(f"⚠️  NO CATEGORIES AVAILABLE for: {place_name}")
             
             return result
             
