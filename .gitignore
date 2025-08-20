@@ -71,6 +71,6 @@ images/stamp_images/*.gif
 .env.local
 .env.*.local
 
-# Generated maps and reports
-*.html
-*_summary.txt
+# Generated maps and reports (but allow test files)
+pilgrim_stamps_map_summary.txt
+scraping.log
