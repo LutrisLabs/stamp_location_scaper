@@ -1,18 +1,19 @@
 # Pilgrim Stamp Scraper
 
-A Python web scraper for extracting pilgrim stamp locations from the Camino Navarro website.
+A Python web scraper for extracting pilgrim stamp locations from multiple Camino routes including Camino Navarro and Camino Francés.
 
 ## Project Overview
 
-This project scrapes the website https://www.lossellosdelcamino.com to extract information about pilgrim stamp locations along the Camino Navarro route. It systematically navigates through town pages and stamp location pages to collect data and download stamp images.
+This project scrapes the website https://www.lossellosdelcamino.com to extract information about pilgrim stamp locations along multiple Camino routes. It systematically navigates through town pages and stamp location pages to collect data and download stamp images for both the Navarrese Way and the full French Way.
 
 ## Features
 
-- Scrapes main page for town category links
-- Extracts stamp location links from each town
+- Scrapes multiple Camino routes (Navarrese and French Ways)
+- Scrapes main page for town category links per route
+- Extracts stamp location links from each town per route
 - Downloads stamp images locally
-- Organizes data into structured format
-- Exports results to Excel file
+- Organizes data into structured format with route identification
+- Exports results to Excel file with comprehensive multi-route data
 
 ## Project Structure
 
@@ -60,4 +61,4 @@ The scraper produces:
 
 ## Status
 
-This project is currently under development with planned subtasks for implementation.
+This project now supports multi-route scraping for both Camino Navarro and Camino Francés routes. The scraper automatically processes both routes sequentially and provides comprehensive statistics for each route.

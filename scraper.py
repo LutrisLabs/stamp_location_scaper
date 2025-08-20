@@ -14,10 +14,26 @@ from typing import List, Dict, Optional
 class PilgrimStampScraper:
     """Main scraper class for pilgrim stamp locations."""
     
-    def __init__(self):
-        """Initialize the scraper with base configuration."""
+    def __init__(self, route: str = "navarro"):
+        """
+        Initialize the scraper with base configuration.
+        
+        Args:
+            route: Route to scrape - "navarro" or "frances"
+        """
         self.base_url = "https://www.lossellosdelcamino.com"
-        self.main_url = f"{self.base_url}/index.php/ruta-desde-roncesvalles/menu-camino-navarro"
+        self.route = route
+        
+        # Construct the appropriate URL based on route
+        if route == "navarro":
+            self.main_url = f"{self.base_url}/index.php/ruta-desde-roncesvalles/menu-camino-navarro"
+            self.route_name = "Camino Navarro"
+        elif route == "frances":
+            self.main_url = f"{self.base_url}/index.php/ruta-del-camino-frances/menu-camino-frances"
+            self.route_name = "Camino Francés"
+        else:
+            raise ValueError(f"Unknown route: {route}. Use 'navarro' or 'frances'")
+        
         self.session = requests.Session()
         self.session.headers.update({
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
@@ -35,24 +51,25 @@ class PilgrimStampScraper:
         
         for attempt in range(max_retries):
             try:
-                logging.info(f"Fetching main page (attempt {attempt + 1}/{max_retries}): {self.main_url}")
+                logging.info(f"Fetching main page for {self.route_name} (attempt {attempt + 1}/{max_retries}): {self.main_url}")
                 response = self.session.get(self.main_url, timeout=30)
                 response.raise_for_status()
                 
                 soup = BeautifulSoup(response.text, 'html.parser')
                 
-                # Find all links that contain "menu-camino-navarro/category/"
+                # Find all links that contain the route-specific pattern
+                route_pattern = f"menu-camino-{self.route}/category/"
                 town_links = set()  # Use set to automatically remove duplicates
                 for a_tag in soup.find_all('a', href=True):
                     href = a_tag['href']
-                    if "menu-camino-navarro/category/" in href:
+                    if route_pattern in href:
                         full_url = urljoin(self.base_url, href)
                         town_links.add(full_url)  # Add to set (duplicates automatically ignored)
                         logging.info(f"Found town link: {full_url}")
                 
                 # Convert set back to list for return
                 unique_town_links = list(town_links)
-                logging.info(f"✓ Total unique town links found: {len(unique_town_links)}")
+                logging.info(f"✓ Total unique town links found for {self.route_name}: {len(unique_town_links)}")
                 return unique_town_links
                 
             except requests.RequestException as e:
@@ -90,7 +107,7 @@ class PilgrimStampScraper:
         
         for i, town_url in enumerate(town_urls, 1):
             try:
-                logging.info(f"Processing town {i}/{len(town_urls)}: {town_url}")
+                logging.info(f"Processing town {i}/{len(town_urls)} for {self.route_name}: {town_url}")
                 
                 # Add rate limiting delay between requests
                 if i > 1:  # Don't delay for the first request
@@ -101,11 +118,12 @@ class PilgrimStampScraper:
                 
                 soup = BeautifulSoup(response.text, 'html.parser')
                 
-                # Find all links that contain "menu-camino-navarro/item/"
+                # Find all links that contain the route-specific pattern
+                route_pattern = f"menu-camino-{self.route}/item/"
                 stamp_links = set()  # Use set to avoid duplicates
                 for a_tag in soup.find_all('a', href=True):
                     href = a_tag['href']
-                    if "menu-camino-navarro/item/" in href:
+                    if route_pattern in href:
                         full_url = urljoin(self.base_url, href)
                         stamp_links.add(full_url)
                 
@@ -353,7 +371,7 @@ class PilgrimStampScraper:
                     english_categories_text = '; '.join(english_categories) if english_categories else ''
                     
                     compiled_data.append({
-                        'route': 'Camino Navarro',
+                        'route': self.route_name,
                         'town': town_name,
                         'place': item['place_name'],
                         'categories': categories_text,
