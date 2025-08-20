@@ -9,11 +9,13 @@ This project scrapes the website https://www.lossellosdelcamino.com to extract i
 ## Features
 
 - Scrapes multiple Camino routes (Navarrese and French Ways)
-- Scrapes main page for town category links per route
 - Extracts stamp location links from each town per route
-- Downloads stamp images locally
+- Downloads stamp images locally with robust retry mechanisms
+- Extracts comprehensive category information for each location
 - Organizes data into structured format with route identification
-- Exports results to Excel file with comprehensive multi-route data
+- Exports results to Excel and CSV formats
+- Includes Google Maps geocoding for precise coordinates
+- Creates interactive maps with all locations
 
 ## Project Structure
 
@@ -47,9 +49,11 @@ python main.py
 ## Output
 
 The scraper produces:
-- Excel file with columns: route, town, place, image_path
+- Excel and CSV files with columns: route, town, place, categories, english_categories, image_path
 - Local directory structure with downloaded stamp images
-- Structured data ready for geocoding analysis
+- Structured data with complete category information
+- Geocoded coordinates for all locations
+- Interactive HTML map with all pilgrim stamp locations
 
 ## Dependencies
 
@@ -58,7 +62,9 @@ The scraper produces:
 - pandas: Data manipulation
 - openpyxl: Excel file export
 - lxml: XML/HTML parser
+- googlemaps: Google Maps API integration
+- folium: Interactive map generation
 
 ## Status
 
-This project now supports multi-route scraping for both Camino Navarro and Camino Francés routes. The scraper automatically processes both routes sequentially and provides comprehensive statistics for each route.
+This project now supports multi-route scraping for both Camino Navarro and Camino Francés routes with robust error handling and retry mechanisms. The scraper automatically processes both routes sequentially, extracts comprehensive category information, and provides precise geocoding via Google Maps API. All 976 locations now have complete category coverage and coordinates.
