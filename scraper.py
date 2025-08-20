@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 import time
 import logging
+import re
 from typing import List, Dict, Optional
 
 class PilgrimStampScraper:
@@ -202,20 +203,39 @@ class PilgrimStampScraper:
                 logging.warning(f"Could not extract image URL from {stamp_url}")
                 return None
             
-            # Extract categories from the categories div
-            categories = []
-            categories_div = soup.find('div', class_='element element-itemcategory first')
-            if categories_div:
-                # Find all links within the categories div
-                category_links = categories_div.find_all('a', href=True)
-                for link in category_links:
-                    category_text = link.text.strip()
-                    if category_text:
-                        categories.append(category_text)
-                
-                logging.info(f"Found {len(categories)} categories: {', '.join(categories)}")
+            # Extract categories using robust, multi-strategy approach
+            categories_set = set()
+
+            # 1) Primary: containers with element-itemcategory (regardless of extra classes)
+            for container in soup.select('div.element-itemcategory, div.element.element-itemcategory'):
+                for a in container.select('a[href]'):
+                    txt = a.get_text(strip=True)
+                    if txt:
+                        categories_set.add(txt)
+
+            # 2) Fallback: same category container under .pos-bottom
+            if not categories_set:
+                for container in soup.select('div.pos-bottom div.element-itemcategory'):
+                    for a in container.select('a[href]'):
+                        txt = a.get_text(strip=True)
+                        if txt:
+                            categories_set.add(txt)
+
+            # 3) Fallback: look for a heading that contains "Categor" and grab links within that same block
+            if not categories_set:
+                heading = soup.find(lambda tag: tag.name in ('h3', 'h4') and re.search(r'categor', tag.get_text(strip=True), re.I))
+                if heading:
+                    parent = heading.parent
+                    for a in parent.find_all('a', href=True):
+                        txt = a.get_text(strip=True)
+                        if txt:
+                            categories_set.add(txt)
+
+            categories = sorted(categories_set)
+            if not categories:
+                logging.warning(f"No categories found for page: {stamp_url}")
             else:
-                logging.info("No categories div found")
+                logging.info(f"Found {len(categories)} categories: {', '.join(categories)}")
             
             result = {
                 'place_name': place_name,
@@ -323,7 +343,7 @@ class PilgrimStampScraper:
         """
         try:
             import pandas as pd
-            from utils import translate_categories_to_english
+            from utils import translate_categories_to_english, normalize_categories
             
             # Prepare data for DataFrame
             compiled_data = []
@@ -344,8 +364,8 @@ class PilgrimStampScraper:
                     # Create local path in images/stamp_images directory
                     local_image_path = os.path.join('images', 'stamp_images', safe_filename)
                     
-                    # Get categories, join them with semicolons if multiple
-                    categories = item.get('categories', [])
+                    # Get categories and normalize them
+                    categories = normalize_categories(item.get('categories', []))
                     categories_text = '; '.join(categories) if categories else ''
                     
                     # Translate categories to English

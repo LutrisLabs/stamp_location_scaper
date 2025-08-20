@@ -15,6 +15,7 @@ from pathlib import Path
 import json
 import googlemaps
 import os
+import math
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -49,6 +50,56 @@ class PilgrimStampGeocoder:
             logger.info("🌍 Dual geocoding enabled: Nominatim + Google Maps")
         else:
             logger.info("🌍 Single geocoding: Nominatim only")
+    
+    def calculate_distance_meters(self, coords1: Tuple[float, float], coords2: Tuple[float, float]) -> float:
+        """
+        Calculate the distance between two coordinates in meters using the Haversine formula.
+        
+        Args:
+            coords1: Tuple of (lat1, lon1)
+            coords2: Tuple of (lat2, lon2)
+            
+        Returns:
+            Distance in meters
+        """
+        lat1, lon1 = coords1
+        lat2, lon2 = coords2
+        
+        # Convert to radians
+        lat1_rad = math.radians(lat1)
+        lon1_rad = math.radians(lon1)
+        lat2_rad = math.radians(lat2)
+        lon2_rad = math.radians(lon2)
+        
+        # Haversine formula
+        dlat = lat2_rad - lat1_rad
+        dlon = lon2_rad - lon1_rad
+        a = math.sin(dlat/2)**2 + math.cos(lat1_rad) * math.cos(lat2_rad) * math.sin(dlon/2)**2
+        c = 2 * math.asin(math.sqrt(a))
+        
+        # Earth's radius in meters
+        earth_radius = 6371000
+        
+        return earth_radius * c
+    
+    def average_coordinates(self, coords1: Tuple[float, float], coords2: Tuple[float, float]) -> Tuple[float, float]:
+        """
+        Calculate the average of two coordinate pairs.
+        
+        Args:
+            coords1: Tuple of (lat1, lon1)
+            coords2: Tuple of (lat2, lon2)
+            
+        Returns:
+            Tuple of (avg_lat, avg_lon)
+        """
+        lat1, lon1 = coords1
+        lat2, lon2 = coords2
+        
+        avg_lat = (lat1 + lat2) / 2
+        avg_lon = (lon1 + lon2) / 2
+        
+        return (avg_lat, avg_lon)
     
     def geocode_nominatim(self, query: str) -> Optional[Tuple[float, float]]:
         """
@@ -202,21 +253,23 @@ class PilgrimStampGeocoder:
         # Determine final coordinates and confidence
         if nominatim_coords and self.google_client and google_coords:
             # Both services succeeded - check if they're close
-            lat_diff = abs(nominatim_coords[0] - google_coords[0])
-            lon_diff = abs(nominatim_coords[1] - google_coords[1])
+            distance_meters = self.calculate_distance_meters(nominatim_coords, google_coords)
+            logger.info(f"📍 Distance between Nominatim and Google coordinates: {distance_meters:.1f} meters")
             
-            if lat_diff < 0.001 and lon_diff < 0.001:  # Very close coordinates
-                result['final_coords'] = nominatim_coords  # Prefer Nominatim (free)
-                result['geocoding_source'] = 'nominatim'
+            if distance_meters <= 50:  # Within 50 meters - coordinates are very close
+                # Average the coordinates for better accuracy
+                result['final_coords'] = self.average_coordinates(nominatim_coords, google_coords)
+                result['geocoding_source'] = 'averaged'
                 result['confidence'] = 'very_high'
-                logger.info(f"🎯 High confidence: Both services agree → {result['final_coords']}")
+                logger.info(f"🎯 Very high confidence: Coordinates within 50m → averaging to {result['final_coords']}")
+                logger.info(f"   Nominatim: {nominatim_coords}, Google: {google_coords}")
             else:
-                # Different coordinates - prefer the one closer to town center
-                # For now, prefer Nominatim as it's free and usually accurate
-                result['final_coords'] = nominatim_coords
-                result['geocoding_source'] = 'nominatim'
+                # More than 50 meters apart - prefer Google as it's more reliable
+                result['final_coords'] = google_coords
+                result['geocoding_source'] = 'google'
                 result['confidence'] = 'high'
-                logger.info(f"⚠️  Different coordinates - using Nominatim → {result['final_coords']}")
+                logger.info(f"⚠️  Coordinates >50m apart ({distance_meters:.1f}m) → preferring Google: {result['final_coords']}")
+                logger.info(f"   Nominatim: {nominatim_coords}, Google: {google_coords}")
                 
         elif nominatim_coords:
             result['final_coords'] = nominatim_coords

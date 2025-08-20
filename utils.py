@@ -149,15 +149,33 @@ SPANISH_TO_ENGLISH_CATEGORIES = {
     
     # Additional categories that might appear in individual stamp pages
     'Auritz / Burguete': 'Auritz / Burguete',  # Place name, keep as is
-    'Uterga': 'Uterga',  # Place name, keep as is
-    'Juan Antonio Cid': 'Juan Antonio Cid',  # Person name, keep as is
-    'Federico Eliceche': 'Federico Eliceche',  # Person name, keep as is
-    'Roberto Daga': 'Roberto Daga',  # Person name, keep as is
+    
+    # Additional stable location/town tags to keep as-is
+    'Roncesvalles / Orreaga': 'Roncesvalles / Orreaga',
+    'Pamplona / Iruña': 'Pamplona / Iruña',
+    'Villava / Atarrabia': 'Villava / Atarrabia',
+    'Burlada / Burlata': 'Burlada / Burlata',
+    'Cizur Mayor / Zizur Nagusi': 'Cizur Mayor / Zizur Nagusi',
+    'Cizur Menor / Zizur Txikia': 'Cizur Menor / Zizur Txikia',
+    'Larrasoaña / Larrasoaina': 'Larrasoaña / Larrasoaina',
+    'Ilárraz / Ilarratz': 'Ilárraz / Ilarratz',
+    'Zuriáin': 'Zuriáin',
+    'Zabaldika': 'Zabaldika',
+    'Zariquiegui': 'Zariquiegui',
+    'Muruzabal': 'Muruzabal',
+    'Viscarret-Guerendiain': 'Viscarret-Guerendiain',
+    'Valle de Erro': 'Valle de Erro',
+    'Akerreta': 'Akerreta',
+    'Zubiri': 'Zubiri',
+    'Burguete': 'Burguete',
+    'Arre': 'Arre',
+    'Obanos': 'Obanos',
+    'Uterga': 'Uterga',
 }
 
 def translate_categories_to_english(spanish_categories: list) -> list:
     """
-    Translate Spanish categories to English using the predefined mapping.
+    Translate Spanish categories to English using smart detection.
     
     Args:
         spanish_categories: List of Spanish category strings
@@ -169,13 +187,70 @@ def translate_categories_to_english(spanish_categories: list) -> list:
     
     for category in spanish_categories:
         if category in SPANISH_TO_ENGLISH_CATEGORIES:
+            # Known category - use translation
             english_categories.append(SPANISH_TO_ENGLISH_CATEGORIES[category])
         else:
-            # If no translation found, keep the original and log it
-            logging.warning(f"No English translation found for category: '{category}'")
+            # Smart detection: if it's not a known category, it's likely a person name
+            # or location that should be preserved as-is
             english_categories.append(category)
+            
+            # Categorize for better analytics
+            category_type = categorize_unknown_category(category)
+            logging.info(f"Auto-preserved {category_type}: '{category}'")
     
     return english_categories
+
+def categorize_unknown_category(category: str) -> str:
+    """
+    Categorize an unknown category to help with analytics and future mapping decisions.
+    
+    Args:
+        category: The unknown category string
+        
+    Returns:
+        str: Category type ('person_name', 'location', 'business', 'other')
+    """
+    # Check if it looks like a person name (contains common name patterns)
+    if any(pattern in category for pattern in [' ', '"', "'", 'de ', 'del ', 'la ', 'el ']):
+        if any(word in category.lower() for word in ['juan', 'jose', 'maria', 'carlos', 'ana', 'luis', 'pedro', 'antonio']):
+            return 'person_name'
+        elif any(word in category.lower() for word in ['hotel', 'bar', 'restaurante', 'albergue', 'pension', 'cafe']):
+            return 'business'
+        elif any(word in category.lower() for word in ['calle', 'plaza', 'avenida', 'camino', 'ruta']):
+            return 'location'
+        else:
+            return 'person_name'  # Default to person name for unknown patterns
+    
+    # Check if it looks like a location (single word, no spaces)
+    elif len(category.split()) == 1 and not any(char in category for char in ['/', '-', '(', ')']):
+        return 'location'
+    
+    # Check if it looks like a business name
+    elif any(word in category.lower() for word in ['s.l.', 's.a.', 'coop', 'assoc', 'fund']):
+        return 'business'
+    
+    else:
+        return 'other'
+
+def normalize_categories(categories):
+    """
+    Normalize categories to ensure they are always a clean list of strings.
+    
+    Args:
+        categories: None, list, or str - the categories to normalize
+        
+    Returns:
+        list[str]: Clean list of category strings
+    """
+    if categories is None:
+        return []
+    if isinstance(categories, list):
+        return [c.strip() for c in categories if isinstance(c, str) and c.strip()]
+    if isinstance(categories, str):
+        parts = [p.strip() for p in categories.split(';') if p.strip()]
+        return parts
+    logging.warning(f"Unexpected categories type: {type(categories)}")
+    return []
 
 def validate_category_translations():
     """

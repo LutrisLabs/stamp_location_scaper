@@ -58,6 +58,13 @@ The scraper produces:
 - openpyxl: Excel file export
 - lxml: XML/HTML parser
 
+## Recent Updates
+
+- **Robust Category Scraping**: Implemented multi-strategy category extraction with fallbacks for varying HTML structures
+- **Smart Category Translation**: Added intelligent person name detection and automatic category preservation
+- **Enhanced Geocoding**: Improved coordinate accuracy with 50-meter threshold validation and coordinate averaging between Nominatim and Google Maps
+- **Missing Category Tracking**: Added comprehensive logging and reporting for pages without categories
+
 ## Status
 
-This project is currently under development with planned subtasks for implementation.
+This project is actively maintained with robust category scraping and enhanced geocoding capabilities.

@@ -72,6 +72,7 @@ def main():
         processed_count = 0
         failed_count = 0
         total_processed = 0
+        missing_category_urls = []
         
         for town_name, stamp_urls in town_stamp_locations.items():
             logging.info(f"Processing stamp locations for town: {town_name} ({len(stamp_urls)} locations)")
@@ -88,6 +89,11 @@ def main():
                     # Scrape the stamp location
                     stamp_data = scraper.scrape_stamp_location(stamp_url)
                     if stamp_data:
+                        # Track missing categories
+                        if not stamp_data.get('categories'):
+                            missing_category_urls.append(stamp_url)
+                            logging.warning(f"[NO CATEGORIES] {stamp_url}")
+                        
                         # Download the image
                         import os
                         from utils import sanitize_filename
@@ -118,6 +124,14 @@ def main():
         logging.info(f"✓ Successfully processed {processed_count} stamp locations")
         if failed_count > 0:
             logging.warning(f"⚠ Failed to process {failed_count} stamp locations")
+        
+        # Missing categories summary
+        if missing_category_urls:
+            logging.warning("=" * 60)
+            logging.warning("Pages with NO categories detected:")
+            for u in missing_category_urls:
+                logging.warning(f" - {u}")
+            logging.warning("=" * 60)
         
         # Step 4: Compile data into DataFrame
         logging.info("=" * 60)
