@@ -35,96 +35,111 @@ def main():
             logging.error("Category translation validation failed. Exiting.")
             return
         
-        # Initialize scraper
-        scraper = PilgrimStampScraper()
+        # Define routes to scrape
+        routes = ["navarro", "frances"]
+        all_scraped_data = []
         
-        # Step 1: Get all town links
-        logging.info("=" * 60)
-        logging.info("Step 1: Extracting town links from main page")
-        logging.info("=" * 60)
-        
-        town_links = scraper.get_town_links()
-        if not town_links:
-            logging.error("Failed to extract town links. Exiting.")
-            return
-        
-        logging.info(f"✓ Found {len(town_links)} towns to process")
-        
-        # Step 2: Get stamp locations for each town
-        logging.info("=" * 60)
-        logging.info("Step 2: Extracting stamp location links from each town")
-        logging.info("=" * 60)
-        
-        town_stamp_locations = scraper.get_stamp_locations_by_town(town_links)
-        if not town_stamp_locations:
-            logging.error("Failed to extract stamp locations. Exiting.")
-            return
-        
-        total_stamp_locations = sum(len(locations) for locations in town_stamp_locations.values())
-        logging.info(f"✓ Found {total_stamp_locations} total stamp locations across all towns")
-        
-        # Step 3: Scrape each stamp location and download images
-        logging.info("=" * 60)
-        logging.info("Step 3: Scraping stamp location data and downloading images")
-        logging.info("=" * 60)
-        
-        scraped_data = []
-        processed_count = 0
-        failed_count = 0
-        total_processed = 0
-        
-        for town_name, stamp_urls in town_stamp_locations.items():
-            logging.info(f"Processing stamp locations for town: {town_name} ({len(stamp_urls)} locations)")
+        for route in routes:
+            logging.info("=" * 60)
+            logging.info(f"Processing route: {route.upper()}")
+            logging.info("=" * 60)
             
-            for i, stamp_url in enumerate(stamp_urls, 1):
-                total_processed += 1
-                try:
-                    logging.info(f"  [{total_processed}/{total_stamp_locations}] Processing: {stamp_url.split('/')[-1]}")
-                    
-                    # Add rate limiting delay between requests
-                    if i > 1:  # Don't delay for the first request
-                        time.sleep(1)
-                    
-                    # Scrape the stamp location
-                    stamp_data = scraper.scrape_stamp_location(stamp_url)
-                    if stamp_data:
-                        # Download the image
-                        import os
-                        from utils import sanitize_filename
+            # Initialize scraper for this route
+            scraper = PilgrimStampScraper(route)
+            
+            # Step 1: Get all town links for this route
+            logging.info(f"Step 1: Extracting town links from {scraper.route_name} main page")
+            logging.info("=" * 60)
+            
+            town_links = scraper.get_town_links()
+            if not town_links:
+                logging.warning(f"No town links found for {scraper.route_name}. Continuing to next route.")
+                continue
+            
+            logging.info(f"✓ Found {len(town_links)} towns to process for {scraper.route_name}")
+            
+            # Step 2: Get stamp locations for each town in this route
+            logging.info(f"Step 2: Extracting stamp location links from each town in {scraper.route_name}")
+            logging.info("=" * 60)
+            
+            town_stamp_locations = scraper.get_stamp_locations_by_town(town_links)
+            if not town_stamp_locations:
+                logging.warning(f"No stamp locations found for {scraper.route_name}. Continuing to next route.")
+                continue
+            
+            total_stamp_locations = sum(len(locations) for locations in town_stamp_locations.values())
+            logging.info(f"✓ Found {total_stamp_locations} total stamp locations across all towns in {scraper.route_name}")
+            
+            # Step 3: Scrape each stamp location and download images for this route
+            logging.info(f"Step 3: Scraping stamp location data and downloading images for {scraper.route_name}")
+            logging.info("=" * 60)
+            
+            route_scraped_data = []
+            processed_count = 0
+            failed_count = 0
+            total_processed = 0
+            
+            for town_name, stamp_urls in town_stamp_locations.items():
+                logging.info(f"Processing stamp locations for town: {town_name} ({len(stamp_urls)} locations)")
+                
+                for i, stamp_url in enumerate(stamp_urls, 1):
+                    total_processed += 1
+                    try:
+                        logging.info(f"  [{total_processed}/{total_stamp_locations}] Processing: {stamp_url.split('/')[-1]}")
                         
-                        image_filename = os.path.basename(stamp_data['image_url'])
-                        safe_filename = sanitize_filename(image_filename)
-                        local_image_path = os.path.join('images', 'stamp_images', safe_filename)
+                        # Add rate limiting delay between requests
+                        if i > 1:  # Don't delay for the first request
+                            time.sleep(1)
                         
-                        if scraper.download_stamp_image(stamp_data['image_url'], local_image_path):
-                            # Update the stamp data with local image path and town name
-                            stamp_data['local_image_path'] = local_image_path
-                            stamp_data['town_name'] = town_name  # Add the town name from the dictionary
-                            scraped_data.append(stamp_data)
-                            processed_count += 1
-                            logging.info(f"    ✓ Successfully processed: {stamp_data['place_name']}")
+                        # Scrape the stamp location
+                        stamp_data = scraper.scrape_stamp_location(stamp_url)
+                        if stamp_data:
+                            # Download the image
+                            import os
+                            from utils import sanitize_filename
+                            
+                            image_filename = os.path.basename(stamp_data['image_url'])
+                            safe_filename = sanitize_filename(image_filename)
+                            local_image_path = os.path.join('images', 'stamp_images', safe_filename)
+                            
+                            if scraper.download_stamp_image(stamp_data['image_url'], local_image_path):
+                                # Update the stamp data with local image path and town name
+                                stamp_data['local_image_path'] = local_image_path
+                                stamp_data['town_name'] = town_name  # Add the town name from the dictionary
+                                route_scraped_data.append(stamp_data)
+                                processed_count += 1
+                                logging.info(f"    ✓ Successfully processed: {stamp_data['place_name']}")
+                            else:
+                                logging.warning(f"    ⚠ Failed to download image for: {stamp_data['place_name']}")
+                                failed_count += 1
                         else:
-                            logging.warning(f"    ⚠ Failed to download image for: {stamp_data['place_name']}")
+                            logging.warning(f"    ⚠ Failed to scrape stamp location: {stamp_url}")
                             failed_count += 1
-                    else:
-                        logging.warning(f"    ⚠ Failed to scrape stamp location: {stamp_url}")
+                            
+                    except Exception as e:
+                        logging.error(f"    ✗ Error processing stamp location {stamp_url}: {e}")
                         failed_count += 1
-                        
-                except Exception as e:
-                    logging.error(f"    ✗ Error processing stamp location {stamp_url}: {e}")
-                    failed_count += 1
-                    continue
+                        continue
+            
+            logging.info(f"✓ Successfully processed {processed_count} stamp locations for {scraper.route_name}")
+            if failed_count > 0:
+                logging.warning(f"⚠ Failed to process {failed_count} stamp locations for {scraper.route_name}")
+            
+            # Add route data to overall collection
+            all_scraped_data.extend(route_scraped_data)
+            
+            # Add delay between routes to be respectful
+            if route != routes[-1]:  # Not the last route
+                logging.info("Waiting 5 seconds before processing next route...")
+                time.sleep(5)
         
-        logging.info(f"✓ Successfully processed {processed_count} stamp locations")
-        if failed_count > 0:
-            logging.warning(f"⚠ Failed to process {failed_count} stamp locations")
-        
-        # Step 4: Compile data into DataFrame
+        # Step 4: Compile all data into DataFrame
         logging.info("=" * 60)
-        logging.info("Step 4: Compiling data into DataFrame")
+        logging.info("Step 4: Compiling all route data into DataFrame")
         logging.info("=" * 60)
         
-        df = scraper.compile_data(scraped_data)
+        # Use the last scraper instance to compile data (they all have the same method)
+        df = scraper.compile_data(all_scraped_data)
         if df.empty:
             logging.error("Failed to compile data. Exiting.")
             return
@@ -149,14 +164,48 @@ def main():
         logging.info("=" * 60)
         logging.info("SCRAPING COMPLETED SUCCESSFULLY!")
         logging.info("=" * 60)
+        
+        # Calculate totals across all routes
+        total_processed = len(all_scraped_data)
+        total_towns = len(set(item['town_name'] for item in all_scraped_data if 'town_name' in item))
+        
+        # Calculate route-specific statistics
+        route_stats = {}
+        for route in routes:
+            route_scraper = PilgrimStampScraper(route)
+            route_name = route_scraper.route_name
+            route_data = [item for item in all_scraped_data if 'route' in item and item['route'] == route_name]
+            route_stats[route] = {
+                'name': route_name,
+                'count': len(route_data),
+                'towns': len(set(item['town_name'] for item in route_data if 'town_name' in item))
+            }
+        
         logging.info(f"Summary:")
-        logging.info(f"  - Towns processed: {len(town_links)}")
-        logging.info(f"  - Total stamp locations found: {total_stamp_locations}")
-        logging.info(f"  - Successfully processed: {processed_count}")
-        logging.info(f"  - Failed to process: {failed_count}")
-        logging.info(f"  - Success rate: {(processed_count/total_stamp_locations)*100:.1f}%")
+        logging.info(f"  - Routes processed: {len(routes)} ({', '.join(routes)})")
+        logging.info(f"  - Total towns processed: {total_towns}")
+        logging.info(f"  - Total stamp locations successfully processed: {total_processed}")
+        
+        # Show breakdown by route
+        logging.info(f"\nRoute Breakdown:")
+        for route, stats in route_stats.items():
+            logging.info(f"  - {stats['name']}: {stats['count']} stamp locations from {stats['towns']} towns")
+        
+        logging.info(f"\nOutput Files:")
         logging.info(f"  - Data exported to: {base_filename}.xlsx and {base_filename}.csv")
         logging.info(f"  - Images saved to: images/stamp_images/")
+        
+        # Success rate analysis
+        if total_processed > 0:
+            logging.info(f"\nSuccess Analysis:")
+            if total_processed >= 100:
+                logging.info(f"  🎉 Excellent results! High volume of data collected")
+            elif total_processed >= 50:
+                logging.info(f"  📈 Good results! Substantial data collected")
+            elif total_processed >= 20:
+                logging.info(f"  ✅ Moderate results! Adequate data collected")
+            else:
+                logging.info(f"  ⚠️  Limited results! Consider reviewing scraping strategy")
         
     except KeyboardInterrupt:
         logging.warning("Scraping interrupted by user")
