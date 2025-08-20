@@ -70,3 +70,7 @@ images/stamp_images/*.gif
 .env
 .env.local
 .env.*.local
+
+# Generated maps and reports
+*.html
+*_summary.txt
