@@ -74,3 +74,13 @@ images/stamp_images/*.gif
 # Generated maps and reports (but allow test files)
 pilgrim_stamps_map_summary.txt
 scraping.log
+
+# Generated output files
+*.geojson
+*.html
+*.xlsx
+*.csv
+!requirements.txt
+!README.md
+!*.py
+!*.md

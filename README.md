@@ -16,6 +16,8 @@ This project scrapes the website https://www.lossellosdelcamino.com to extract i
 - Exports results to Excel and CSV formats
 - Includes Google Maps geocoding for precise coordinates
 - Creates interactive maps with all locations
+- Category analysis and standardization for clean data organization
+- CSV-to-GeoJSON conversion with simplified property structure
 
 ## Project Structure
 
@@ -25,6 +27,8 @@ stamp_location_scaper/
 ├── main.py              # Main execution script
 ├── scraper.py           # Core scraping logic
 ├── utils.py             # Utility functions
+├── analyze_categories.py # Category analysis and standardization
+├── csv_to_geojson.py    # CSV to GeoJSON converter
 ├── data/                # Output data directory
 ├── images/              # Downloaded images directory
 │   └── stamp_images/    # Stamp images organized by location
@@ -54,6 +58,7 @@ The scraper produces:
 - Structured data with complete category information
 - Geocoded coordinates for all locations
 - Interactive HTML map with all pilgrim stamp locations
+- Clean GeoJSON files with standardized categories for mapping applications
 
 ## Dependencies
 
@@ -64,7 +69,9 @@ The scraper produces:
 - lxml: XML/HTML parser
 - googlemaps: Google Maps API integration
 - folium: Interactive map generation
+- shapely: Geometric operations
+- numpy: Numerical computing
 
 ## Status
 
-This project now supports multi-route scraping for both Camino Navarro and Camino Francés routes with robust error handling and retry mechanisms. The scraper automatically processes both routes sequentially, extracts comprehensive category information, and provides precise geocoding via Google Maps API. All 976 locations now have complete category coverage and coordinates.
+This project now supports multi-route scraping for both Camino Navarro and Camino Francés routes with robust error handling and retry mechanisms. The scraper automatically processes both routes sequentially, extracts comprehensive category information, and provides precise geocoding via Google Maps API. All 976 locations now have complete category coverage and coordinates. Recent improvements include category standardization and streamlined GeoJSON export for better mapping integration.
