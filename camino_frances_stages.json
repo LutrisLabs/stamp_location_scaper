@@ -1,0 +1,321 @@
+{"route": "Camino Francés", "start": "Saint-Jean-Pied-de-Port", "end": "Santiago de Compostela", "stages": [
+    {"stage_number": "1A", "start": "Saint-Jean-Pied-de-Port", "end": "Roncesvalles", "stage_name": "Saint-Jean-Pied-de-Port to Roncesvalles (via Route Napolean)", "distance_km": 25.7, "difficulty": "Challenging", "average_time_hours": "7-9", "stops": [
+    {"name": "Saint-Jean-Pied-de-Port", "country": "France", "province": "Nouvelle-Aquitaine", "distance_from_start": 0.0, "to_next_km": 5.2},
+    {"name": "Honto", "country": "France", "province": "Nouvelle-Aquitaine", "distance_from_start": 5.2, "to_next_km": 2.3},
+    {"name": "Orisson", "country": "France", "province": "Nouvelle-Aquitaine", "distance_from_start": 7.5, "to_next_km": 18.2},
+    {"name": "Roncesvalles", "country": "Spain", "province": "Navarra", "distance_from_start": 25.7}
+    ]},
+    {"stage_number": "1B", "start": "Saint-Jean-Pied-de-Port", "end": "Roncesvalles", "stage_name": "Saint-Jean-Pied-de-Port to Roncesvalles (via Valcarlos)", "distance_km": 27.5, "difficulty": "Challenging", "average_time_hours": "6-8", "stops": [
+    {"name": "Saint-Jean-Pied-de-Port", "country": "France", "province": "Nouvelle-Aquitaine", "distance_from_start": 0.0, "to_next_km": 8.1},
+    {"name": "Arneguy", "country": "France", "province": "Nouvelle-Aquitaine", "distance_from_start": 8.1, "to_next_km": 3.3},
+    {"name": "Valcarlos", "country": "Spain", "province": "Navarra", "distance_from_start": 11.4, "to_next_km": 16.1},
+    {"name": "Roncesvalles", "country": "Spain", "province": "Navarra", "distance_from_start": 27.5}
+    ]},
+    {"stage_number": "2", "start": "Roncesvalles", "end": "Zubiri", "stage_name": "Roncesvalles to Zubiri", "distance_km": 21.8, "difficulty": "Moderate", "average_time_hours": "5-6", "stops": [
+    {"name": "Roncesvalles", "country": "Spain", "province": "Navarra", "distance_from_start": 25.7, "to_next_km": 2.7},
+    {"name": "Burguete", "country": "Spain", "province": "Navarra", "distance_from_start": 28.4, "to_next_km": 3.7},
+    {"name": "Espinal", "country": "Spain", "province": "Navarra", "distance_from_start": 32.1, "to_next_km": 5.5},
+    {"name": "Viscarret", "country": "Spain", "province": "Navarra", "distance_from_start": 37.6, "to_next_km": 1.8},
+    {"name": "Lintzoain", "country": "Spain", "province": "Navarra", "distance_from_start": 39.4, "to_next_km": 8.1},
+    {"name": "Zubiri", "country": "Spain", "province": "Navarra", "distance_from_start": 47.5}
+    ]},
+    {"stage_number": "3", "start": "Zubiri", "end": "Pamplona", "stage_name": "Zubiri to Pamplona", "distance_km": 21.7, "difficulty": "Easy", "average_time_hours": "5-6", "stops": [
+    {"name": "Zubiri", "country": "Spain", "province": "Navarra", "distance_from_start": 47.5, "to_next_km": 4.7},
+    {"name": "Larrasoana", "country": "Spain", "province": "Navarra", "distance_from_start": 52.2, "to_next_km": 3.9},
+    {"name": "Zuriain", "country": "Spain", "province": "Navarra", "distance_from_start": 56.1, "to_next_km": 3.6},
+    {"name": "Zabaldika", "country": "Spain", "province": "Navarra", "distance_from_start": 59.7, "to_next_km": 4.5},
+    {"name": "Trinidad de Arre", "country": "Spain", "province": "Navarra", "distance_from_start": 64.2, "to_next_km": 0.5},
+    {"name": "Villava", "country": "Spain", "province": "Navarra", "distance_from_start": 64.7, "to_next_km": 0.8},
+    {"name": "Burlada", "country": "Spain", "province": "Navarra", "distance_from_start": 65.5, "to_next_km": 3.7},
+    {"name": "Pamplona", "country": "Spain", "province": "Navarra", "distance_from_start": 69.2}
+    ]},
+    {"stage_number": "4", "start": "Pamplona", "end": "Puente la Reina", "stage_name": "Pamplona to Puente la Reina", "distance_km": 23.7, "difficulty": "Easy/Moderate", "average_time_hours": "6-7", "stops": [
+    {"name": "Pamplona", "country": "Spain", "province": "Navarra", "distance_from_start": 69.2, "to_next_km": 4.3},
+    {"name": "Cizur Menor", "country": "Spain", "province": "Navarra", "distance_from_start": 73.5, "to_next_km": 6.4},
+    {"name": "Zariquiegui", "country": "Spain", "province": "Navarra", "distance_from_start": 79.9, "to_next_km": 5.9},
+    {"name": "Uterga", "country": "Spain", "province": "Navarra", "distance_from_start": 85.8, "to_next_km": 2.6},
+    {"name": "Muruzabal", "country": "Spain", "province": "Navarra", "distance_from_start": 88.4, "to_next_km": 1.9},
+    {"name": "Obanos", "country": "Spain", "province": "Navarra", "distance_from_start": 90.3, "to_next_km": 2.6},
+    {"name": "Puente la Reina", "country": "Spain", "province": "Navarra", "distance_from_start": 92.9}
+    ]},
+    {"stage_number": "5", "start": "Puente la Reina", "end": "Estella", "stage_name": "Puente la Reina to Estella", "distance_km": 21.7, "difficulty": "Moderate", "average_time_hours": "5-6", "stops": [
+    {"name": "Puente la Reina", "country": "Spain", "province": "Navarra", "distance_from_start": 92.9, "to_next_km": 4.9},
+    {"name": "Maneru", "country": "Spain", "province": "Navarra", "distance_from_start": 97.8, "to_next_km": 2.6},
+    {"name": "Cirauqui", "country": "Spain", "province": "Navarra", "distance_from_start": 100.4, "to_next_km": 5.7},
+    {"name": "Lorca", "country": "Spain", "province": "Navarra", "distance_from_start": 106.1, "to_next_km": 4.5},
+    {"name": "Villatuerta", "country": "Spain", "province": "Navarra", "distance_from_start": 110.6, "to_next_km": 4.0},
+    {"name": "Estella", "country": "Spain", "province": "Navarra", "distance_from_start": 114.6}
+    ]},
+    {"stage_number": "6", "start": "Estella", "end": "Los Arcos", "stage_name": "Estella to Los Arcos", "distance_km": 22.0, "difficulty": "Easy/Moderate", "average_time_hours": "5-6", "stops": [
+    {"name": "Estella", "country": "Spain", "province": "Navarra", "distance_from_start": 114.6, "to_next_km": 2.1},
+    {"name": "Ayegui", "country": "Spain", "province": "Navarra", "distance_from_start": 116.7, "to_next_km": 2.3},
+    {"name": "Irache", "country": "Spain", "province": "Navarra", "distance_from_start": 119.0, "to_next_km": 3.1},
+    {"name": "Azqueta", "country": "Spain", "province": "Navarra", "distance_from_start": 122.1, "to_next_km": 2.0},
+    {"name": "Villamayor de Monjardin", "country": "Spain", "province": "Navarra", "distance_from_start": 124.1, "to_next_km": 12.5},
+    {"name": "Los Arcos", "country": "Spain", "province": "Navarra", "distance_from_start": 136.6}
+    ]},
+    {"stage_number": "7", "start": "Los Arcos", "end": "Logroño", "stage_name": "Los Arcos to Logrono", "distance_km": 28.7, "difficulty": "Easy/Moderate", "average_time_hours": "7-8", "stops": [
+    {"name": "Los Arcos", "country": "Spain", "province": "Navarra", "distance_from_start": 136.6, "to_next_km": 6.9},
+    {"name": "Sansol", "country": "Spain", "province": "Navarra", "distance_from_start": 143.5, "to_next_km": 0.9},
+    {"name": "Torres del Rio", "country": "Spain", "province": "Navarra", "distance_from_start": 144.4, "to_next_km": 11.1},
+    {"name": "Viana", "country": "Spain", "province": "Navarra", "distance_from_start": 155.5, "to_next_km": 9.8},
+    {"name": "Logrono", "country": "Spain", "province": "La Rioja", "distance_from_start": 165.3}
+    ]},
+    {"stage_number": "8", "start": "Logroño", "end": "Nájera", "stage_name": "Logrono to Najera", "distance_km": 28.8, "difficulty": "Moderate", "average_time_hours": "7-9", "stops": [
+    {"name": "Logrono", "country": "Spain", "province": "La Rioja", "distance_from_start": 165.3, "to_next_km": 12.0},
+    {"name": "Navarrete", "country": "Spain", "province": "La Rioja", "distance_from_start": 177.3, "to_next_km": 7.1},
+    {"name": "Ventosa", "country": "Spain", "province": "La Rioja", "distance_from_start": 184.4, "to_next_km": 6.2},
+    {"name": "Aleson", "country": "Spain", "province": "La Rioja", "distance_from_start": 190.6, "to_next_km": 4.0},
+    {"name": "Najera", "country": "Spain", "province": "La Rioja", "distance_from_start": 194.6}
+    ]},
+    {"stage_number": "9", "start": "Nájera", "end": "Santo Domingo de la Calzada", "stage_name": "Najera to Santo Domingo de la Calzada", "distance_km": 21.8, "difficulty": "Easy", "average_time_hours": "5-6", "stops": [
+    {"name": "Najera", "country": "Spain", "province": "La Rioja", "distance_from_start": 194.6, "to_next_km": 6.3},
+    {"name": "Azofra", "country": "Spain", "province": "La Rioja", "distance_from_start": 200.9, "to_next_km": 9.2},
+    {"name": "Ciruena", "country": "Spain", "province": "La Rioja", "distance_from_start": 210.1, "to_next_km": 6.3},
+    {"name": "Santo Domingo de la Calzada", "country": "Spain", "province": "La Rioja", "distance_from_start": 216.4}
+    ]},
+    {"stage_number": "10", "start": "Santo Domingo de la Calzada", "end": "Belorado", "stage_name": "Santo Domingo de la Calzada to Belorado", "distance_km": 22.9, "difficulty": "Easy", "average_time_hours": "5-6", "stops": [
+    {"name": "Santo Domingo de la Calzada", "country": "Spain", "province": "La Rioja", "distance_from_start": 216.4, "to_next_km": 7.1},
+    {"name": "Granon", "country": "Spain", "province": "La Rioja", "distance_from_start": 223.5, "to_next_km": 3.8},
+    {"name": "Redecilla del Camino", "country": "Spain", "province": "Castile and León", "distance_from_start": 227.3, "to_next_km": 1.7},
+    {"name": "Castildelgado", "country": "Spain", "province": "Castile and León", "distance_from_start": 229.0, "to_next_km": 2.0},
+    {"name": "Viloria de Rioja", "country": "Spain", "province": "Castile and León", "distance_from_start": 231.0, "to_next_km": 3.4},
+    {"name": "Villamayor del Rio", "country": "Spain", "province": "Castile and León", "distance_from_start": 234.4, "to_next_km": 4.9},
+    {"name": "Belorado", "country": "Spain", "province": "Castile and León", "distance_from_start": 239.3}
+    ]},
+    {"stage_number": "11", "start": "Belorado", "end": "San Juan de Ortega", "stage_name": "Belorado to San Juan de Ortega", "distance_km": 24.0, "difficulty": "Easy/Moderate", "average_time_hours": "5-6", "stops": [
+    {"name": "Belorado", "country": "Spain", "province": "Castile and León", "distance_from_start": 239.3, "to_next_km": 4.5},
+    {"name": "Tosantos", "country": "Spain", "province": "Castile and León", "distance_from_start": 243.8, "to_next_km": 1.9},
+    {"name": "Villambistia", "country": "Spain", "province": "Castile and León", "distance_from_start": 245.7, "to_next_km": 1.6},
+    {"name": "Espinosa del Camino", "country": "Spain", "province": "Castile and León", "distance_from_start": 247.3, "to_next_km": 3.7},
+    {"name": "Villafranca Montes de Oca", "country": "Spain", "province": "Castile and León", "distance_from_start": 251.0, "to_next_km": 12.3},
+    {"name": "San Juan de Ortega", "country": "Spain", "province": "Castile and León", "distance_from_start": 263.3}
+    ]},
+    {"stage_number": "12", "start": "San Juan de Ortega", "end": "Burgos", "stage_name": "San Juan de Ortega to Burgos", "distance_km": 25.3, "difficulty": "Easy/Moderate", "average_time_hours": "5-6", "stops": [
+    {"name": "San Juan de Ortega", "country": "Spain", "province": "Castile and León", "distance_from_start": 263.3, "to_next_km": 3.8},
+    {"name": "Ages", "country": "Spain", "province": "Castile and León", "distance_from_start": 267.1, "to_next_km": 2.5},
+    {"name": "Atapuerca", "country": "Spain", "province": "Castile and León", "distance_from_start": 269.6, "to_next_km": 6.1},
+    {"name": "Cardenuela Riopico", "country": "Spain", "province": "Castile and León", "distance_from_start": 275.7, "to_next_km": 2.2},
+    {"name": "Orbaneja Riopico", "country": "Spain", "province": "Castile and León", "distance_from_start": 277.9, "to_next_km": 4.0},
+    {"name": "Villafria", "country": "Spain", "province": "Castile and León", "distance_from_start": 281.9, "to_next_km": 6.7},
+    {"name": "Burgos", "country": "Spain", "province": "Castile and León", "distance_from_start": 288.6}
+    ]},
+    {"stage_number": "13", "start": "Burgos", "end": "Hornillos del Camino", "stage_name": "Burgos to Hornillos del Camino", "distance_km": 22.0, "difficulty": "Easy/Moderate", "average_time_hours": "5-6", "stops": [
+    {"name": "Burgos", "country": "Spain", "province": "Castile and León", "distance_from_start": 288.6, "to_next_km": 8.7},
+    {"name": "Villalbilla de Burgos", "country": "Spain", "province": "Castile and León", "distance_from_start": 297.3, "to_next_km": 3.4},
+    {"name": "Tardajos", "country": "Spain", "province": "Castile and León", "distance_from_start": 300.7, "to_next_km": 2.1},
+    {"name": "Rabe de las Calzadas", "country": "Spain", "province": "Castile and León", "distance_from_start": 302.8, "to_next_km": 7.8},
+    {"name": "Hornillos del Camino", "country": "Spain", "province": "Castile and León", "distance_from_start": 310.6}
+    ]},
+    {"stage_number": "14", "start": "Hornillos del Camino", "end": "Castrojeriz", "stage_name": "Hornillos del Camino to Castrojeriz", "distance_km": 19.8, "difficulty": "Easy", "average_time_hours": "5-6", "stops": [
+    {"name": "Hornillos del Camino", "country": "Spain", "province": "Castile and León", "distance_from_start": 310.6, "to_next_km": 5.5},
+    {"name": "San Bol", "country": "Spain", "province": "Castile and León", "distance_from_start": 316.1, "to_next_km": 5.1},
+    {"name": "Hontanas", "country": "Spain", "province": "Castile and León", "distance_from_start": 321.2, "to_next_km": 9.2},
+    {"name": "Castrojeriz", "country": "Spain", "province": "Castile and León", "distance_from_start": 330.4}
+    ]},
+    {"stage_number": "15", "start": "Castrojeriz", "end": "Frómista", "stage_name": "Castrojeriz to Fromista", "distance_km": 24.8, "difficulty": "Easy/Moderate", "average_time_hours": "6-7", "stops": [
+    {"name": "Castrojeriz", "country": "Spain", "province": "Castile and León", "distance_from_start": 330.4, "to_next_km": 8.9},
+    {"name": "Itero del Castillo", "country": "Spain", "province": "Castile and León", "distance_from_start": 339.3, "to_next_km": 1.9},
+    {"name": "Itero de la Vega", "country": "Spain", "province": "Castile and León", "distance_from_start": 341.2, "to_next_km": 8.1},
+    {"name": "Boadilla del Camino", "country": "Spain", "province": "Castile and León", "distance_from_start": 349.3, "to_next_km": 5.9},
+    {"name": "Fromista", "country": "Spain", "province": "Castile and León", "distance_from_start": 355.2}
+    ]},
+    {"stage_number": "16", "start": "Frómista", "end": "Carrión de los Condes", "stage_name": "Fromista to Carrion de los Condes", "distance_km": 19.7, "difficulty": "Easy", "average_time_hours": "5-6", "stops": [
+    {"name": "Fromista", "country": "Spain", "province": "Castile and León", "distance_from_start": 355.2, "to_next_km": 3.8},
+    {"name": "Poblacion de Campos", "country": "Spain", "province": "Castile and León", "distance_from_start": 359.0, "to_next_km": 4.2},
+    {"name": "Villovieco", "country": "Spain", "province": "Castile and León", "distance_from_start": 363.2, "to_next_km": 2.1},
+    {"name": "Villarmentero de Campos", "country": "Spain", "province": "Castile and León", "distance_from_start": 365.3, "to_next_km": 4.3},
+    {"name": "Villalcazar de Sirga", "country": "Spain", "province": "Castile and León", "distance_from_start": 369.6, "to_next_km": 5.8},
+    {"name": "Carrion de los Condes", "country": "Spain", "province": "Castile and León", "distance_from_start": 375.4}
+    ]},
+    {"stage_number": "17", "start": "Carrión de los Condes", "end": "Terradillos de los Templarios", "stage_name": "Carrion de los Condes to Terradillos de los Templarios", "distance_km": 26.4, "difficulty": "Easy/Moderate", "average_time_hours": "6-7", "stops": [
+    {"name": "Carrion de los Condes", "country": "Spain", "province": "Castile and León", "distance_from_start": 375.4, "to_next_km": 17.2},
+    {"name": "Calzadilla de la Cueza", "country": "Spain", "province": "Castile and León", "distance_from_start": 392.6, "to_next_km": 6.1},
+    {"name": "Ledigos", "country": "Spain", "province": "Castile and León", "distance_from_start": 398.7, "to_next_km": 3.1},
+    {"name": "Terradillos de los Templarios", "country": "Spain", "province": "Castile and León", "distance_from_start": 401.8}
+    ]},
+    {"stage_number": "18", "start": "Terradillos de los Templarios", "end": "Bercianos del Real Camino", "stage_name": "Terradillos de los Templarios to Bercianos del Real Camino", "distance_km": 24.5, "difficulty": "Easy/Moderate", "average_time_hours": "7-8", "stops": [
+    {"name": "Terradillos de los Templarios", "country": "Spain", "province": "Castile and León", "distance_from_start": 401.8, "to_next_km": 3.3},
+    {"name": "Moratinos", "country": "Spain", "province": "Castile and León", "distance_from_start": 405.1, "to_next_km": 2.6},
+    {"name": "San Nicolas del Real Camino", "country": "Spain", "province": "Castile and León", "distance_from_start": 407.7, "to_next_km": 6.8},
+    {"name": "Sahagun", "country": "Spain", "province": "Castile and León", "distance_from_start": 414.5, "to_next_km": 5.2},
+    {"name": "Calzada del Coto", "country": "Spain", "province": "Castile and León", "distance_from_start": 419.7, "to_next_km": 6.6},
+    {"name": "Bercianos del Real Camino", "country": "Spain", "province": "Castile and León", "distance_from_start": 426.3}
+    ]},
+    {"stage_number": "19", "start": "Bercianos del Real Camino", "end": "Mansilla de las Mulas", "stage_name": "Bercianos del Real Camino to Mansilla de las Mulas", "distance_km": 26.3, "difficulty": "Easy/Moderate", "average_time_hours": "7-8", "stops": [
+    {"name": "Bercianos del Real Camino", "country": "Spain", "province": "Castile and León", "distance_from_start": 426.3, "to_next_km": 7.5},
+    {"name": "El Burgo Ranero", "country": "Spain", "province": "Castile and León", "distance_from_start": 433.8, "to_next_km": 13.1},
+    {"name": "Reliegos", "country": "Spain", "province": "Castile and León", "distance_from_start": 446.9, "to_next_km": 5.7},
+    {"name": "Mansilla de las Mulas", "country": "Spain", "province": "Castile and León", "distance_from_start": 452.6}
+    ]},
+    {"stage_number": "20", "start": "Mansilla de las Mulas", "end": "León", "stage_name": "Mansilla de las Mulas to Leon", "distance_km": 19.2, "difficulty": "Easy", "average_time_hours": "5-6", "stops": [
+    {"name": "Mansilla de las Mulas", "country": "Spain", "province": "Castile and León", "distance_from_start": 452.6, "to_next_km": 4.8},
+    {"name": "Villamoros de Mansilla", "country": "Spain", "province": "Castile and León", "distance_from_start": 457.4, "to_next_km": 1.7},
+    {"name": "Puente Villarente", "country": "Spain", "province": "Castile and León", "distance_from_start": 459.1, "to_next_km": 5.0},
+    {"name": "Arcahueja", "country": "Spain", "province": "Castile and León", "distance_from_start": 464.1, "to_next_km": 7.7},
+    {"name": "Leon", "country": "Spain", "province": "Castile and León", "distance_from_start": 471.8}
+    ]},
+    {"stage_number": "21A", "start": "León", "end": "San Martín del Camino", "stage_name": "Leon to San Martin del Camino", "distance_km": 24.4, "difficulty": "Easy/Moderate", "average_time_hours": "5-6", "stops": [
+    {"name": "Leon", "country": "Spain", "province": "Castile and León", "distance_from_start": 471.8, "to_next_km": 3.8},
+    {"name": "Trobajo del Camino", "country": "Spain", "province": "Castile and León", "distance_from_start": 475.6, "to_next_km": 3.3},
+    {"name": "La Virgen del Camino", "country": "Spain", "province": "Castile and León", "distance_from_start": 478.9, "to_next_km": 12.9},
+    {"name": "Villadangos del Paramo", "country": "Spain", "province": "Castile and León", "distance_from_start": 491.8, "to_next_km": 4.4},
+    {"name": "San Martin del Camino", "country": "Spain", "province": "Castile and León", "distance_from_start": 496.2}
+    ]},
+    {"stage_number": "21B", "start": "León", "end": "Villar de Mazarife", "stage_name": "Leon to Villar de Mazarife", "distance_km": 21.0, "difficulty": "Easy/Moderate", "average_time_hours": "5-6", "stops": [
+    {"name": "Leon", "country": "Spain", "province": "Castile and León", "distance_from_start": 471.8, "to_next_km": 3.8},
+    {"name": "Trobajo del Camino", "country": "Spain", "province": "Castile and León", "distance_from_start": 475.6, "to_next_km": 3.3},
+    {"name": "La Virgen del Camino", "country": "Spain", "province": "Castile and León", "distance_from_start": 478.9, "to_next_km": 2.5},
+    {"name": "Fresno del Camino", "country": "Spain", "province": "Castile and León", "distance_from_start": 481.4, "to_next_km": 7.2},
+    {"name": "Chozas de Abajo", "country": "Spain", "province": "Castile and León", "distance_from_start": 488.6, "to_next_km": 4.6},
+    {"name": "Villar de Mazarife", "country": "Spain", "province": "Castile and León", "distance_from_start": 493.2}
+    ]},
+    {"stage_number": "22A", "start": "San Martín del Camino", "end": "Astorga", "stage_name": "San Martin del Camino to Astorga", "distance_km": 24.4, "difficulty": "Easy/Moderate", "average_time_hours": "5-6", "stops": [
+    {"name": "San Martin del Camino", "country": "Spain", "province": "Castile and León", "distance_from_start": 496.2, "to_next_km": 7.1},
+    {"name": "Hospital de Orbigo", "country": "Spain", "province": "Castile and León", "distance_from_start": 503.3, "to_next_km": 2.8},
+    {"name": "Villares de Orbigo", "country": "Spain", "province": "Castile and León", "distance_from_start": 506.1, "to_next_km": 2.7},
+    {"name": "Santibanez de Valdeiglesias", "country": "Spain", "province": "Castile and León", "distance_from_start": 508.8, "to_next_km": 8.1},
+    {"name": "San Justo de la Vega", "country": "Spain", "province": "Castile and León", "distance_from_start": 516.9, "to_next_km": 3.7},
+    {"name": "Astorga", "country": "Spain", "province": "Castile and León", "distance_from_start": 520.6}
+    ]},
+    {"stage_number": "22B", "start": "Villar de Mazarife", "end": "Astorga", "stage_name": "Villar de Mazarife to Astorga", "distance_km": 31.7, "difficulty": "Moderate", "average_time_hours": "8-9", "stops": [
+    {"name": "Villar de Mazarife", "country": "Spain", "province": "Castile and León", "distance_from_start": 493.2, "to_next_km": 9.8},
+    {"name": "Villavante", "country": "Spain", "province": "Castile and León", "distance_from_start": 503.0, "to_next_km": 4.6},
+    {"name": "Hospital de Orbigo", "country": "Spain", "province": "Castile and León", "distance_from_start": 507.6, "to_next_km": 2.8},
+    {"name": "Villares de Orbigo", "country": "Spain", "province": "Castile and León", "distance_from_start": 510.4, "to_next_km": 2.7},
+    {"name": "Santibanez de Valdeiglesias", "country": "Spain", "province": "Castile and León", "distance_from_start": 513.1, "to_next_km": 8.1},
+    {"name": "San Justo de la Vega", "country": "Spain", "province": "Castile and León", "distance_from_start": 521.2, "to_next_km": 3.7},
+    {"name": "Astorga", "country": "Spain", "province": "Castile and León", "distance_from_start": 524.9}
+    ]},
+    {"stage_number": "23", "start": "Astorga", "end": "Foncebadón", "stage_name": "Astorga to Foncebadon", "distance_km": 25.9, "difficulty": "Moderate", "average_time_hours": "6-7", "stops": [
+    {"name": "Astorga", "country": "Spain", "province": "Castile and León", "distance_from_start": 520.6, "to_next_km": 2.5},
+    {"name": "Valdeviejas", "country": "Spain", "province": "Castile and León", "distance_from_start": 523.1, "to_next_km": 2.4},
+    {"name": "Murias de Rechivaldo", "country": "Spain", "province": "Castile and León", "distance_from_start": 525.5, "to_next_km": 4.7},
+    {"name": "Santa Catalina de Somoza", "country": "Spain", "province": "Castile and León", "distance_from_start": 530.2, "to_next_km": 4.1},
+    {"name": "El Ganso", "country": "Spain", "province": "Castile and León", "distance_from_start": 534.3, "to_next_km": 6.9},
+    {"name": "Rabanal del Camino", "country": "Spain", "province": "Castile and León", "distance_from_start": 541.2, "to_next_km": 5.6},
+    {"name": "Foncebadon", "country": "Spain", "province": "Castile and León", "distance_from_start": 546.8}
+    ]},
+    {"stage_number": "24", "start": "Foncebadón", "end": "Ponferrada", "stage_name": "Foncebadon to Ponferrada", "distance_km": 26.6, "difficulty": "Moderate", "average_time_hours": "7-8", "stops": [
+    {"name": "Foncebadon", "country": "Spain", "province": "Castile and León", "distance_from_start": 546.8, "to_next_km": 11.3},
+    {"name": "El Acebo de San Miguel", "country": "Spain", "province": "Castile and León", "distance_from_start": 558.1, "to_next_km": 3.3},
+    {"name": "Riego de Ambros", "country": "Spain", "province": "Castile and León", "distance_from_start": 561.4, "to_next_km": 4.6},
+    {"name": "Molinaseca", "country": "Spain", "province": "Castile and León", "distance_from_start": 566.0, "to_next_km": 4.9},
+    {"name": "Campo", "country": "Spain", "province": "Castile and León", "distance_from_start": 570.9, "to_next_km": 4.2},
+    {"name": "Ponferrada", "country": "Spain", "province": "Castile and León", "distance_from_start": 575.1}
+    ]},
+    {"stage_number": "25", "start": "Ponferrada", "end": "Villafranca del Bierzo", "stage_name": "Ponferrada to Villafranca del Bierzo", "distance_km": 23.7, "difficulty": "Moderate", "average_time_hours": "5-6", "stops": [
+    {"name": "Ponferrada", "country": "Spain", "province": "Castile and León", "distance_from_start": 575.1, "to_next_km": 4.1},
+    {"name": "Columbrianos", "country": "Spain", "province": "Castile and León", "distance_from_start": 579.2, "to_next_km": 5.0},
+    {"name": "Camponaraya", "country": "Spain", "province": "Castile and León", "distance_from_start": 584.2, "to_next_km": 5.7},
+    {"name": "Cacabelos", "country": "Spain", "province": "Castile and León", "distance_from_start": 589.9, "to_next_km": 2.2},
+    {"name": "Pieros", "country": "Spain", "province": "Castile and León", "distance_from_start": 592.1, "to_next_km": 1.9},
+    {"name": "Valtuille de Arriba", "country": "Spain", "province": "Castile and León", "distance_from_start": 594.0, "to_next_km": 4.8},
+    {"name": "Villafranca del Bierzo", "country": "Spain", "province": "Castile and León", "distance_from_start": 598.8}
+    ]},
+    {"stage_number": "26", "start": "Villafranca del Bierzo", "end": "O Cebreiro", "stage_name": "Villafranca del Bierzo to O Cebreiro", "distance_km": 28.0, "difficulty": "Moderate/Challenging", "average_time_hours": "7-8", "stops": [
+    {"name": "Villafranca del Bierzo", "country": "Spain", "province": "Castile and León", "distance_from_start": 598.8, "to_next_km": 5.1},
+    {"name": "Pereje", "country": "Spain", "province": "Castile and León", "distance_from_start": 603.9, "to_next_km": 4.5},
+    {"name": "Trabadelo", "country": "Spain", "province": "Castile and León", "distance_from_start": 608.4, "to_next_km": 3.9},
+    {"name": "La Portela de Valcarce", "country": "Spain", "province": "Castile and León", "distance_from_start": 612.3, "to_next_km": 1.2},
+    {"name": "Ambasmestas", "country": "Spain", "province": "Castile and León", "distance_from_start": 613.5, "to_next_km": 1.6},
+    {"name": "Vega de Valcarce", "country": "Spain", "province": "Castile and León", "distance_from_start": 615.1, "to_next_km": 2.4},
+    {"name": "Ruitelan", "country": "Spain", "province": "Castile and León", "distance_from_start": 617.5, "to_next_km": 1.3},
+    {"name": "Las Herrerias", "country": "Spain", "province": "Castile and León", "distance_from_start": 618.8, "to_next_km": 3.3},
+    {"name": "La Faba", "country": "Spain", "province": "Castile and León", "distance_from_start": 622.1, "to_next_km": 2.3},
+    {"name": "La Laguna", "country": "Spain", "province": "Castile and León", "distance_from_start": 624.4, "to_next_km": 2.4},
+    {"name": "O Cebreiro", "country": "Spain", "province": "Galicia", "distance_from_start": 626.8}
+    ]},
+    {"stage_number": "27", "start": "O Cebreiro", "end": "Triacastela", "stage_name": "O Cebreiro to Triacastela", "distance_km": 22.4, "difficulty": "Easy/Moderate", "average_time_hours": "6-7", "stops": [
+    {"name": "O Cebreiro", "country": "Spain", "province": "Galicia", "distance_from_start": 626.8, "to_next_km": 3.8},
+    {"name": "Linares", "country": "Spain", "province": "Galicia", "distance_from_start": 630.6, "to_next_km": 2.4},
+    {"name": "Hospital da Condesa", "country": "Spain", "province": "Galicia", "distance_from_start": 633.0, "to_next_km": 3.3},
+    {"name": "Alto do Poio", "country": "Spain", "province": "Galicia", "distance_from_start": 636.3, "to_next_km": 3.4},
+    {"name": "Fonfria", "country": "Spain", "province": "Galicia", "distance_from_start": 639.7, "to_next_km": 2.4},
+    {"name": "O Biduedo", "country": "Spain", "province": "Galicia", "distance_from_start": 642.1, "to_next_km": 3.0},
+    {"name": "Fillobal", "country": "Spain", "province": "Galicia", "distance_from_start": 645.1, "to_next_km": 4.1},
+    {"name": "Triacastela", "country": "Spain", "province": "Galicia", "distance_from_start": 649.2}
+    ]},
+    {"stage_number": "28A", "start": "Triacastela", "end": "Sarria", "stage_name": "Triacastela to Sarria (via San Xil)", "distance_km": 18.5, "difficulty": "Easy/Moderate", "average_time_hours": "5-6", "stops": [
+    {"name": "Triacastela", "country": "Spain", "province": "Galicia", "distance_from_start": 649.2, "to_next_km": 1.9},
+    {"name": "A Balsa", "country": "Spain", "province": "Galicia", "distance_from_start": 651.1, "to_next_km": 3.8},
+    {"name": "San Xil", "country": "Spain", "province": "Galicia", "distance_from_start": 654.9, "to_next_km": 6.7},
+    {"name": "Furela", "country": "Spain", "province": "Galicia", "distance_from_start": 661.6, "to_next_km": 2.1},
+    {"name": "Calvor", "country": "Spain", "province": "Galicia", "distance_from_start": 663.7, "to_next_km": 1.2},
+    {"name": "Aguiada", "country": "Spain", "province": "Galicia", "distance_from_start": 664.9, "to_next_km": 4.6},
+    {"name": "Sarria", "country": "Spain", "province": "Galicia", "distance_from_start": 669.5}
+    ]},
+    {"stage_number": "28B", "start": "Triacastela", "end": "Sarria", "stage_name": "Triacastela to Sarria (via Samos)", "distance_km": 25.5, "difficulty": "Easy/Moderate", "average_time_hours": "6-7", "stops": [
+    {"name": "Triacastela", "country": "Spain", "province": "Galicia", "distance_from_start": 649.2, "to_next_km": 4.1},
+    {"name": "San Cristovo do Real", "country": "Spain", "province": "Galicia", "distance_from_start": 653.3, "to_next_km": 0.9},
+    {"name": "Lusio", "country": "Spain", "province": "Galicia", "distance_from_start": 654.2, "to_next_km": 1.1},
+    {"name": "Renche", "country": "Spain", "province": "Galicia", "distance_from_start": 655.3, "to_next_km": 2.3},
+    {"name": "San Martino do Real", "country": "Spain", "province": "Galicia", "distance_from_start": 657.6, "to_next_km": 2.2},
+    {"name": "Samos", "country": "Spain", "province": "Galicia", "distance_from_start": 659.8, "to_next_km": 2.2},
+    {"name": "Teiguin", "country": "Spain", "province": "Galicia", "distance_from_start": 662.0, "to_next_km": 1.3},
+    {"name": "Pascais", "country": "Spain", "province": "Galicia", "distance_from_start": 663.3, "to_next_km": 7.0},
+    {"name": "Perros", "country": "Spain", "province": "Galicia", "distance_from_start": 670.3, "to_next_km": 0.9},
+    {"name": "Aguiada", "country": "Spain", "province": "Galicia", "distance_from_start": 671.2, "to_next_km": 4.6},
+    {"name": "Sarria", "country": "Spain", "province": "Galicia", "distance_from_start": 675.8}
+    ]},
+    {"stage_number": "29", "start": "Sarria", "end": "Portomarín", "stage_name": "Sarria to Portomarin", "distance_km": 24.4, "difficulty": "Easy/Moderate", "average_time_hours": "6-7", "stops": [
+    {"name": "Sarria", "country": "Spain", "province": "Galicia", "distance_from_start": 669.5, "to_next_km": 3.7},
+    {"name": "Vilei", "country": "Spain", "province": "Galicia", "distance_from_start": 673.2, "to_next_km": 1.1},
+    {"name": "Barbadelo", "country": "Spain", "province": "Galicia", "distance_from_start": 674.3, "to_next_km": 1.6},
+    {"name": "Rente", "country": "Spain", "province": "Galicia", "distance_from_start": 675.9, "to_next_km": 0.8},
+    {"name": "A Serra", "country": "Spain", "province": "Galicia", "distance_from_start": 676.7, "to_next_km": 1.2},
+    {"name": "Marzan", "country": "Spain", "province": "Galicia", "distance_from_start": 677.9, "to_next_km": 2.6},
+    {"name": "Peruscallo", "country": "Spain", "province": "Galicia", "distance_from_start": 680.5, "to_next_km": 2.8},
+    {"name": "Morgade", "country": "Spain", "province": "Galicia", "distance_from_start": 683.3, "to_next_km": 1.1},
+    {"name": "Ferreiros", "country": "Spain", "province": "Galicia", "distance_from_start": 684.4, "to_next_km": 0.6},
+    {"name": "Mirallos", "country": "Spain", "province": "Galicia", "distance_from_start": 685.0, "to_next_km": 0.5},
+    {"name": "A Pena (Paradela)", "country": "Spain", "province": "Galicia", "distance_from_start": 685.5, "to_next_km": 0.8},
+    {"name": "As Rozas", "country": "Spain", "province": "Galicia", "distance_from_start": 686.3, "to_next_km": 2.4},
+    {"name": "Moimentos", "country": "Spain", "province": "Galicia", "distance_from_start": 688.7, "to_next_km": 0.6},
+    {"name": "Marcadoiro", "country": "Spain", "province": "Galicia", "distance_from_start": 689.3, "to_next_km": 1.9},
+    {"name": "A Parrocha", "country": "Spain", "province": "Galicia", "distance_from_start": 691.2, "to_next_km": 1.8},
+    {"name": "Vilacha", "country": "Spain", "province": "Galicia", "distance_from_start": 693.0, "to_next_km": 2.3},
+    {"name": "Portomarin", "country": "Spain", "province": "Galicia", "distance_from_start": 695.3}
+    ]},
+    {"stage_number": "30", "start": "Portomarín", "end": "Palas de Rei", "stage_name": "Portomarin to Palas de Rei", "distance_km": 25.1, "difficulty": "Easy/Moderate", "average_time_hours": "6-7", "stops": [
+    {"name": "Portomarin", "country": "Spain", "province": "Galicia", "distance_from_start": 695.3, "to_next_km": 5.9},
+    {"name": "Toxibo", "country": "Spain", "province": "Galicia", "distance_from_start": 701.2, "to_next_km": 3.4},
+    {"name": "Gonzar", "country": "Spain", "province": "Galicia", "distance_from_start": 704.6, "to_next_km": 1.4},
+    {"name": "Castromaior", "country": "Spain", "province": "Galicia", "distance_from_start": 706.0, "to_next_km": 2.4},
+    {"name": "O Hospital", "country": "Spain", "province": "Galicia", "distance_from_start": 708.4, "to_next_km": 2.1},
+    {"name": "Ventas de Naron", "country": "Spain", "province": "Galicia", "distance_from_start": 710.5, "to_next_km": 3.2},
+    {"name": "Ligonde", "country": "Spain", "province": "Galicia", "distance_from_start": 713.7, "to_next_km": 1.0},
+    {"name": "Airexe", "country": "Spain", "province": "Galicia", "distance_from_start": 714.7, "to_next_km": 2.2},
+    {"name": "Portos", "country": "Spain", "province": "Galicia", "distance_from_start": 716.9, "to_next_km": 0.7},
+    {"name": "Lestedo", "country": "Spain", "province": "Galicia", "distance_from_start": 717.6, "to_next_km": 4.7},
+    {"name": "Palas de Rei", "country": "Spain", "province": "Galicia", "distance_from_start": 722.3}
+    ]},
+    {"stage_number": "31", "start": "Palas de Rei", "end": "Arzúa", "stage_name": "Palas de Rei to Arzua", "distance_km": 29.5, "difficulty": "Moderate", "average_time_hours": "8-9", "stops": [
+    {"name": "Palas de Rei", "country": "Spain", "province": "Galicia", "distance_from_start": 722.3, "to_next_km": 4.2},
+    {"name": "San Xulian do Camino", "country": "Spain", "province": "Galicia", "distance_from_start": 726.5, "to_next_km": 0.8},
+    {"name": "Ponte Campana", "country": "Spain", "province": "Galicia", "distance_from_start": 727.3, "to_next_km": 1.2},
+    {"name": "Casanova", "country": "Spain", "province": "Galicia", "distance_from_start": 728.5, "to_next_km": 3.0},
+    {"name": "O Coto", "country": "Spain", "province": "Galicia", "distance_from_start": 731.5, "to_next_km": 0.7},
+    {"name": "O Leboreiro", "country": "Spain", "province": "Galicia", "distance_from_start": 732.2, "to_next_km": 5.5},
+    {"name": "Melide", "country": "Spain", "province": "Galicia", "distance_from_start": 737.7, "to_next_km": 5.9},
+    {"name": "Boente", "country": "Spain", "province": "Galicia", "distance_from_start": 743.6, "to_next_km": 2.4},
+    {"name": "A Fraga Alta", "country": "Spain", "province": "Galicia", "distance_from_start": 746.0, "to_next_km": 3.2},
+    {"name": "Ribadiso", "country": "Spain", "province": "Galicia", "distance_from_start": 749.2, "to_next_km": 2.9},
+    {"name": "Arzua", "country": "Spain", "province": "Galicia", "distance_from_start": 752.1}
+    ]},
+    {"stage_number": "32", "start": "Arzúa", "end": "O Pedrouzo", "stage_name": "Arzua to O Pedrouzo", "distance_km": 20.0, "difficulty": "Easy/Moderate", "average_time_hours": "5-6", "stops": [
+    {"name": "Arzua", "country": "Spain", "province": "Galicia", "distance_from_start": 752.1, "to_next_km": 3.0},
+    {"name": "Pregontono", "country": "Spain", "province": "Galicia", "distance_from_start": 755.1, "to_next_km": 3.2},
+    {"name": "Os Penedos", "country": "Spain", "province": "Galicia", "distance_from_start": 758.3, "to_next_km": 6.9},
+    {"name": "A Salceda", "country": "Spain", "province": "Galicia", "distance_from_start": 765.2, "to_next_km": 2.1},
+    {"name": "A Brea", "country": "Spain", "province": "Galicia", "distance_from_start": 767.3, "to_next_km": 2.5},
+    {"name": "Santa Irene", "country": "Spain", "province": "Galicia", "distance_from_start": 769.8, "to_next_km": 1.8},
+    {"name": "A Rua", "country": "Spain", "province": "Galicia", "distance_from_start": 771.6, "to_next_km": 1.6},
+    {"name": "O Pedrouzo", "country": "Spain", "province": "Galicia", "distance_from_start": 773.2}
+    ]},
+    {"stage_number": "33", "start": "O Pedrouzo", "end": "Santiago de Compostela", "stage_name": "O Pedrouzo to Santiago de Compostela", "distance_km": 18.9, "difficulty": "Easy/Moderate", "average_time_hours": "5-6", "stops": [
+    {"name": "O Pedrouzo", "country": "Spain", "province": "Galicia", "distance_from_start": 773.2, "to_next_km": 14.4},
+    {"name": "Monte do Gozo", "country": "Spain", "province": "Galicia", "distance_from_start": 787.6, "to_next_km": 4.5},
+    {"name": "Santiago de Compostela", "country": "Spain", "province": "Galicia", "distance_from_start": 792.1}
+    ]}
+    ]}

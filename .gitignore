@@ -75,7 +75,7 @@ images/stamp_images/*.gif
 pilgrim_stamps_map_summary.txt
 scraping.log
 
-# Generated output files
+# Generated output files - exclude large generated files but allow Camino project files
 *.geojson
 *.html
 *.xlsx
@@ -84,3 +84,17 @@ scraping.log
 !README.md
 !*.py
 !*.md
+
+# Camino geocoding specific exclusions
+camino_geocoding/*.log
+camino_geocoding/test_*.json
+camino_geocoding/test_*.html
+camino_geocoding/test_*.kml
+camino_geocoding/test_workflow_output/
+camino_geocoding/__pycache__/
+
+# Allow Camino project source files and final outputs
+!camino_geocoding/*.py
+!camino_geocoding/*.md
+!camino_geocoding/camino_frances_geocoded.json
+!camino_geocoding/camino_frances_map.html
